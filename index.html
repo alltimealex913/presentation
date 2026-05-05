@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upgrade Dashboard | Engr. Gutierrez</title>
+    <title>Engr. Gutierrez Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -166,6 +166,7 @@
 
     <nav class="navbar">
         <button class="nav-btn active" onclick="showSection('about')">About Me</button>
+        <button class="nav-btn" onclick="showSection('education')">Education</button>
         <button class="nav-btn" onclick="showSection('experience')">Work Experience</button>
         <button class="nav-btn" onclick="showSection('progress')">Work Order Progress</button>
         <button class="nav-btn" onclick="showSection('performance')">Performance Overview</button>
@@ -203,6 +204,34 @@
             </div>
         </div>
     </section>
+
+    <div id="education" class="page-section" style="padding-top: 80px;">
+    <div class="container">
+        <!-- Centered Header - Binabaan pa natin lalo ang margin-bottom -->
+        <div style="text-align: center; margin-bottom: 100px;"> 
+            <h1 style="color: #ffd700; font-weight: 800; font-size: 2.8rem; margin: 0; letter-spacing: 2px;">EDUCATION</h1>
+            <!-- Bold na bold na Academic Background -->
+            <p style="color: #ffffff; font-weight: 800; font-size: 1.1rem; margin: 5px 0; letter-spacing: 4px; opacity: 1;">ACADEMIC BACKGROUND</p>
+        </div>
+
+        <!-- Ultra-Compact Glass Box -->
+        <div class="info-box" style="width: fit-content; max-width: 90%; margin: 0 auto; display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: flex-start !important; gap: 25px; padding: 15px 35px !important; min-height: 0 !important; height: auto !important;">
+            
+            <!-- LEFT: Logo -->
+            <div style="flex: 0 0 auto !important; display: flex; align-items: center;">
+                <img src="bulsu-logo.png" alt="BulSU Logo" style="width: 90px; height: 90px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.2));">
+            </div>
+
+            <!-- RIGHT: Academic Details -->
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2px;">
+                <h2 style="color: #ffffff; font-weight: 700; margin: 0; font-size: 1.3rem; line-height: 1.1; white-space: nowrap;">Bachelor of Science in Electronics Engineering</h2>
+                <h3 style="color: #ffd700; font-weight: 600; margin: 0; font-size: 1.1rem;">Bulacan State University</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin: 0; font-size: 0.9rem;">City of Malolos, Bulacan</p>
+                <p style="color: rgba(255, 255, 255, 0.5); margin: 0; font-size: 0.85rem; font-weight: 500;">2013 – 2018</p>
+            </div>
+        </div>
+    </div>
+</div>
 
   <section id="experience" class="page-section">
     <div class="container">
@@ -735,7 +764,7 @@ fill="none" stroke="rgba(255, 215, 0, 0.7)" stroke-width="3" stroke-linecap="rou
     </div>
 
     </section>
-
+    
     <style>
         body { 
             font-family: 'Poppins', sans-serif; 
@@ -841,7 +870,28 @@ fill="none" stroke="rgba(255, 215, 0, 0.7)" stroke-width="3" stroke-linecap="rou
         0% { left: -100%; }
         100% { left: 100%; }
     }
-    </style>
+    /* --- ILAGAY ITO SA PINAKABABA NG <style> SECTION MO --- */
 
+/* Ibalik ang Highlight at Hover effect sa lahat ng boxes */
+.stat-box, .info-box, .exp-card.ultra-slim {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Ito ang magpapabalik sa highlight kapag itinapat ang cursor */
+.stat-box:hover, .info-box:hover, .exp-card.ultra-slim:hover {
+    background: rgba(255, 215, 0, 0.15) !important; /* Gold highlight */
+    border-color: rgba(255, 215, 0, 0.6) !important; 
+    transform: translateY(-5px) scale(1.01); /* Konting angat at laki */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 215, 0, 0.2);
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Siguraduhin na ang mga text sa loob ay hindi nagbabago ang kulay nang biglaan */
+.stat-box *, .info-box *, .exp-card.ultra-slim * {
+    pointer-events: none; /* Para hindi ma-disturb ang hover ng main box */
+}
+    </style>
+    
 </body>
 </html>
