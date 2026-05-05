@@ -409,7 +409,7 @@
 </script>
 
     <section id="progress" class="page-section">
-    <div class="container" style="text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 85vh;">
+    <div class="container" style="text-align: center;">
         
         <h2 class="section-main-title" style="margin-bottom: 5px; font-size: 1.8rem;">WORK ORDER PROGRESS</h2>
         <h1 class="name-header" style="margin-bottom: 20px; font-size: 1.2rem;">UTILITY RELOCATION MONITORING</h1>
@@ -523,7 +523,7 @@
     }
     </style>
 
-   <section id="performance" class="page-section" style="padding-top: 80px; padding-bottom: 120px;">
+   <section id="performance" class="page-section">
     <div class="container" style="text-align: center;">
         <h2 class="section-main-title">PERFORMANCE OVERVIEW</h2>
         <h1 class="name-header" style="font-size: 1rem; opacity: 0.7; margin-bottom: 50px;">WORK ORDER COMPLETION TREND</h1>
@@ -651,31 +651,35 @@ fill="none" stroke="rgba(255, 215, 0, 0.7)" stroke-width="3" stroke-linecap="rou
 </style>
 
     <script>
-    function showSection(sectionId) {
-        // Itago lahat
-        const sections = document.querySelectorAll('.page-section');
-        sections.forEach(sec => {
-            sec.classList.remove('active');
-            sec.style.display = 'none';
-        });
+  function showSection(sectionId) {
+    // 1. Itago lahat
+    const sections = document.querySelectorAll('.page-section');
+    sections.forEach(sec => {
+        sec.classList.remove('active');
+        sec.style.display = 'none';
+    });
 
-        // Alisin ang active sa buttons
-        const buttons = document.querySelectorAll('.nav-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
+    // 2. I-reset ang buttons
+    const buttons = document.querySelectorAll('.nav-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
 
-        // Ipakita ang tamang section
-        const activeSection = document.getElementById(sectionId);
-        activeSection.classList.add('active');
-        
-        // I-apply ang tamang display type
-        if (sectionId === 'about' || sectionId === 'closing') {
-            activeSection.style.display = 'flex';
-        } else {
-            activeSection.style.display = 'block';
-        }
-
-        event.currentTarget.classList.add('active');
+    // 3. Ipakita ang target
+    const activeSection = document.getElementById(sectionId);
+    activeSection.classList.add('active');
+    
+    // 4. Consistent Display Logic
+    if (sectionId === 'closing' || sectionId === 'about') {
+        // Ang 'about' section mo ay naka-grid/flex ang dashboard row, 
+        // pero yung section itself ay dapat naka-block para pantay ang header.
+        activeSection.style.display = 'block'; 
+    } else {
+        activeSection.style.display = 'block';
     }
+
+    if (sectionId === 'closing') activeSection.style.display = 'flex';
+
+    event.currentTarget.classList.add('active');
+}
 </script>
 
     <section id="closing" class="page-section" style="display: none; padding: 120px 0; background: #000; position: relative; overflow: hidden; flex-direction: column; align-items: center; justify-content: center; min-height: 90vh;">
@@ -733,6 +737,51 @@ fill="none" stroke="rgba(255, 215, 0, 0.7)" stroke-width="3" stroke-linecap="rou
     </section>
 
     <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            /* Palitan ang filename sa loob ng url() kung iba ang pangalan ng jpg mo */
+            background: linear-gradient(rgba(10, 17, 24, 0.8), rgba(10, 17, 24, 0.8)), 
+                        url('4884841.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--text-white);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Dagdag na styling para mag-glass look ang mga boxes mo laban sa background */
+        .info-box, .exp-card.ultra-slim, .stat-box {
+            background: rgba(255, 255, 255, 0.07) !important;
+            backdrop-filter: blur(15px) !important;
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* SECTION CONTROL - Forced Top Alignment */
+.page-section {
+    display: none; 
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 100px !important; /* FIXED distance from navbar */
+    padding-bottom: 50px;
+    vertical-align: top;
+}
+
+.page-section.active {
+    display: block !important; /* Lahat gawing block para pantay ang top */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Exception: Closing/End section lang ang i-center natin */
+#closing.active {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0 !important; 
+}
+    
     /* Intermediate Carriage Styling */
     .mmsp-car {
         width: 200px;
